@@ -1,0 +1,35 @@
+<md-toolbar>Cadastro Cliente</md-toolbar>
+<form>
+  <md-input-container>
+    <input mdInput placeholder="Nome" required [(ngModel)]="cliente.nome" name="nome">
+  </md-input-container>
+
+  <md-input-container>
+    <input type="email" mdInput placeholder="E-mail" required [(ngModel)]="cliente.email" name="email">
+  </md-input-container>
+
+  <md-input-container>
+    <input type="number" mdInput placeholder="CPF" required [(ngModel)]="cliente.cpf" name="cpf">
+  </md-input-container>
+
+  <button md-raised-button (click)="salvar()" type="submit">Salvar</button>
+  <button md-raised-button (click)="limpar()">Limpar</button>
+</form>
+
+<hr>
+
+<md-card *ngFor="let c of clientes">
+  <md-card-header>
+    <md-card-title>{{c.nome}}</md-card-title>
+    <md-card-subtitle>{{c.email}}</md-card-subtitle>
+  </md-card-header>
+  <md-card-content>
+    <p>
+      {{c.cpf}}
+    </p>
+  </md-card-content>
+  <md-card-actions>
+    <button md-button (click)="editar(c)">Editar</button>
+    <button md-button (click)="excluir(c)">Excluir</button>
+  </md-card-actions>
+</md-card>
