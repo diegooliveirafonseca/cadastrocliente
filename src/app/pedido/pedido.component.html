@@ -1,0 +1,29 @@
+<md-toolbar>Cadastro Pedido</md-toolbar>
+<form>
+    <md-input-container>
+        <input mdInput placeholder="Numero" required [(ngModel)]="pedido.numero" name="numero">
+    </md-input-container>
+
+    <md-input-container>
+        <input mdInput placeholder="Data" required [(ngModel)]="pedido.data" name="data">
+    </md-input-container>
+
+     <button md-raised-button (click)="salvar()" type="submit">Salvar</button>
+     <button md-raised-button (click)="limpar()">Limpar</button>
+
+
+</form>
+
+<hr>
+
+<md-card *ngFor="let c of pedidos">
+  <md-card-header>
+    <md-card-title>{{c.numero}}</md-card-title>
+    <md-card-subtitle>{{c.data}}</md-card-subtitle>
+  </md-card-header>
+ 
+  <md-card-actions>
+    <button md-button (click)="editar(c)">Editar</button>
+    <button md-button (click)="excluir(c)">Excluir</button>
+  </md-card-actions>
+</md-card>
