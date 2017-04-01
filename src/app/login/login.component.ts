@@ -15,8 +15,8 @@ export class LoginComponent implements OnInit {
 
 
     
-    username:string = 'diegooliveirafonseca';
-    password:string = '520577';
+    username:string = 'test@angular2.com';
+    password:string = 'angular2';
     auth_type:string = "N/A";
     is_auth_error:boolean = false;
     auth_status:string = null;
