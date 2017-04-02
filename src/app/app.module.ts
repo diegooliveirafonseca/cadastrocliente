@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import {CadastroClienteAppRoutingModule} from './app-routing.module';
 
+import { TextMaskModule } from 'angular2-text-mask';
 import {BackandService} from 'angular2bknd-sdk';
 import {MaterialModule} from '@angular/material';
 import { AppComponent } from './app.component';
@@ -26,6 +27,7 @@ import {PedidoComponent} from './pedido/pedido.component';
     BrowserModule,
     FormsModule,
     HttpModule,
+    TextMaskModule, 
     MaterialModule,
     CadastroClienteAppRoutingModule
   ],

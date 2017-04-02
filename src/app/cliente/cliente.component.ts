@@ -12,11 +12,11 @@ export class ClienteComponent {
   clientes: any;
   constructor(private router: Router, private backandService: BackandService) {
     //
-    this.backandService.setAppName('diegooliveira');
-    this.backandService.setSignUpToken('ffee414d-f069-4fe6-b483-096e8e3fa86f');
-    this.backandService.setAnonymousToken('fbfdd4b6-db51-4e12-9477-338efb03c89f');
+    this.backandService.setAppName('financaspaidegua');
+    this.backandService.setSignUpToken('4647a51a-b46c-47f4-94cc-532fd489ce75');
+   // this.backandService.setAnonymousToken('fbfdd4b6-db51-4e12-9477-338efb03c89f');
     //entra em modo anômimo
-    this.backandService.useAnonymousAuth();
+   // this.backandService.useAnonymousAuth();
 
     this.cliente = {};
     this.clientes = [];
