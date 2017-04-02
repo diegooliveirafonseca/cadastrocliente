@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { BackandService } from 'angular2bknd-sdk';
 
 @Component({
-  selector: 'app-root',
+  selector: 'app-pedido',
   templateUrl: './pedido.component.html',// <input [textMask]="{mask: mask}" [(ngModel)]="myModel" type="text"/>
   styleUrls: ['./pedido.component.css']
 })
@@ -12,8 +12,8 @@ export class PedidoComponent {
     pedidos: any;
     constructor(private router: Router, private backandService: BackandService) {
     //
-    this.backandService.setAppName('financaspaidegua');
-    this.backandService.setSignUpToken('4647a51a-b46c-47f4-94cc-532fd489ce75');
+    this.backandService.setAppName('diegooliveira');
+    this.backandService.setSignUpToken('ffee414d-f069-4fe6-b483-096e8e3fa86f');
 
     this.pedido = {};
     this.pedidos = [];

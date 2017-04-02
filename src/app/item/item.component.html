@@ -1,0 +1,36 @@
+<md-toolbar>Cadastro Itens</md-toolbar>
+<form>
+
+    <md-input-container>
+    <input type="number" mdInput placeholder="Código" required [(ngModel)]="item.codigo" name="codigo">
+  </md-input-container>  
+
+  <md-input-container>
+    <input mdInput placeholder="Nome" required [(ngModel)]="item.nome" name="nome">
+  </md-input-container>
+
+  <md-input-container>
+    <input type="text" mdInput placeholder="Descrição" [(ngModel)]="item.descricao" name="descricao">
+  </md-input-container>
+
+  <button md-raised-button (click)="salvar()" type="submit">Salvar</button>
+  <button md-raised-button (click)="limpar()">Limpar</button>
+</form>
+
+<hr>
+
+<md-card *ngFor="let i of itens">
+  <md-card-header>
+    <md-card-title>{{i.codigo}}</md-card-title>
+    <md-card-subtitle>{{i.nome}}</md-card-subtitle>
+  </md-card-header>
+  <md-card-content>
+    <p>
+      {{i.descricao}}
+    </p>
+  </md-card-content>
+  <md-card-actions>
+    <button md-button (click)="editar(c)">Editar</button>
+    <button md-button (click)="excluir(c)">Excluir</button>
+  </md-card-actions>
+</md-card>
