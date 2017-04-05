@@ -2,6 +2,13 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { BackandService } from 'angular2bknd-sdk';
 
+class Cliente {
+  nome: String
+  email: String
+  cpf: String
+
+}
+
 @Component({
   selector: 'app-root',
   templateUrl: './cliente.component.html',
@@ -92,6 +99,7 @@ export class ClienteComponent {
       .subscribe(
       data => {
         this.clientes = data;
+        
       },
       err => {
         console.log(err);

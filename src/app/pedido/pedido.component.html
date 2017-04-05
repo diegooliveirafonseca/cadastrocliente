@@ -7,7 +7,11 @@
     <md-input-container>
         <input mdInput placeholder="Data" required [(ngModel)]="pedido.data" name="data">
     </md-input-container>
-
+    <div>
+      <app-item [itens]='itens'></app-item>
+    </div>
+    
+      <br>
      <button md-raised-button (click)="salvar()" type="submit">Salvar</button>
      <button md-raised-button (click)="limpar()">Limpar</button>
 
@@ -25,5 +29,6 @@
   <md-card-actions>
     <button md-button (click)="editar(c)">Editar</button>
     <button md-button (click)="excluir(c)">Excluir</button>
+    <!--<button md-button (click)="openDialogExcluir()">Excluir</button>-->
   </md-card-actions>
 </md-card>

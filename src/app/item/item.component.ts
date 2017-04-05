@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { BackandService } from 'angular2bknd-sdk';
 
@@ -10,7 +10,7 @@ import { BackandService } from 'angular2bknd-sdk';
 export class ItemComponent {
 
   item: any;
-  itens: any;
+  @Input()itens: any;
   constructor(private router: Router, private backandService: BackandService) {
     //
     this.backandService.setAppName('diegooliveira');
@@ -18,7 +18,6 @@ export class ItemComponent {
     this.backandService.setAnonymousToken('fbfdd4b6-db51-4e12-9477-338efb03c89f');
     //entra em modo anômimo
     this.backandService.useAnonymousAuth();
-
     this.item = {};
     this.itens = [];
 
@@ -26,11 +25,11 @@ export class ItemComponent {
   }
 
   salvar() {
-    //console.log(this.item);
+    console.log(this.item);
     //{nome: "adasda", email: "sadadas", cpf: 4414141}
     if (this.item.id == undefined) {
-
-      this.backandService.create('item', this.item)
+      if(this.item.codigo!=0 && this.item.nome !=''){
+        this.backandService.create('item', this.item)
         .subscribe(
         data => {
           this.item = {};
@@ -41,6 +40,8 @@ export class ItemComponent {
         }
 
         );
+      }else{alert("O código deve ser diferente de zero e o nome não pode estar em branco!")}  
+      
     } else {
       // passa somente os campos que são alteraveis, ou seja, codigo, nome e descricao
       this.backandService.update('item', this.item.id, {
@@ -59,6 +60,9 @@ export class ItemComponent {
 
         );
     }
+    this.itens.push(this.item);
+    this.item = {};
+    this.listar();
   }
 
   editar(c) {
@@ -68,7 +72,9 @@ export class ItemComponent {
 
   excluir(c) {
     //console.log(c)
-    this.backandService.delete('item', c.id)
+    let confirmar = confirm("Tem certeza que deseja excluir?");
+    if(confirmar){
+      this.backandService.delete('item', c.id)
       .subscribe(
       data => {
       },
@@ -81,6 +87,7 @@ export class ItemComponent {
       }
 
       );
+    }
   }
 
   limpar(){

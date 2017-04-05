@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import {CadastroClienteAppRoutingModule} from './app-routing.module';
+import {ErrorComponent} from './pages/error/error.component';
 
 import { TextMaskModule } from 'angular2-text-mask';
 import {BackandService} from 'angular2bknd-sdk';
@@ -14,6 +15,7 @@ import {ClienteComponent} from './cliente/cliente.component';
 import {ItemComponent} from './item/item.component';
 import {PedidoComponent} from './pedido/pedido.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -21,7 +23,8 @@ import {PedidoComponent} from './pedido/pedido.component';
     SignupComponent,
     ClienteComponent,
     ItemComponent,
-    PedidoComponent
+    PedidoComponent,
+    ErrorComponent
   ],
   imports: [
     BrowserModule,
@@ -29,6 +32,7 @@ import {PedidoComponent} from './pedido/pedido.component';
     HttpModule,
     TextMaskModule, 
     MaterialModule,
+    MaterialModule.forRoot(),
     CadastroClienteAppRoutingModule
   ],
   providers: [BackandService],

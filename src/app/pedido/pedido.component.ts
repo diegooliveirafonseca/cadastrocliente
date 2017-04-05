@@ -10,19 +10,21 @@ import { BackandService } from 'angular2bknd-sdk';
 export class PedidoComponent {
     pedido: any;
     pedidos: any;
-    constructor(private router: Router, private backandService: BackandService) {
+    itens: any;
+    //cliente:any;
+    constructor( private router: Router, private backandService: BackandService) {
     //
     this.backandService.setAppName('diegooliveira');
     this.backandService.setSignUpToken('ffee414d-f069-4fe6-b483-096e8e3fa86f');
 
     this.pedido = {};
     this.pedidos = [];
-
+    //this.itens = [];
     this.listar();
   }
 
 salvar() {
-    //console.log(this.pedido);
+    console.log(this.pedido);
     //{nome: "adasda", email: "sadadas", cpf: 4414141}
     if (this.pedido.id == undefined) {
 
@@ -42,6 +44,7 @@ salvar() {
       this.backandService.update('pedido', this.pedido.id, {
         numero: this.pedido.numero,
         data: this.pedido.data,
+        itens:this.pedido.itens
         
       })
         .subscribe(
@@ -67,6 +70,7 @@ salvar() {
         console.log(err);
       }
       );
+      
   }
 
  editar(c) {
@@ -76,7 +80,9 @@ salvar() {
     
   excluir(c) {
     //console.log(c)
-    this.backandService.delete('pedido', c.id)
+    let confirmar = confirm("Tem certeza que deseja excluir?");
+    if(confirmar){
+      this.backandService.delete('pedido', c.id)
       .subscribe(
       data => {
       },
@@ -89,11 +95,20 @@ salvar() {
       }
 
       );
+    }
   }
 
   limpar(){
     this.pedido = {};
     this.listar();
+  }
+
+  adicionarItem(){
+
+  }
+
+  removerItem(){
+
   }
 
  public navigate(url) {
