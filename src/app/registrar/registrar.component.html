@@ -1,0 +1,41 @@
+<form class="column" align="center">
+
+<h1>Registrar</h1>
+
+<div class="row">  
+<md-input-container >
+  <input  mdInput placeholder="Username"  type="email" placeholder="Digite seu e-mail" (input)="email = $event.target.value" id="email" required>
+</md-input-container>
+</div>
+
+<div class="row">  
+<md-input-container >
+  <input  mdInput placeholder="firstName"  type="text" placeholder="Digite seu Nome" (input)="firstName = $event.target.value" id="first-name" required >
+</md-input-container>
+</div>
+
+<div class="row">  
+<md-input-container >
+  <input  mdInput placeholder="lastName"  type="text" placeholder="Digite seu Sobrenome" (input)="lastName = $event.target.value" id="last-name" required>
+</md-input-container>
+</div>
+
+
+    <p> Sua senha deverá ter mais do 6 digitios </p>
+    <div class="row">  
+<md-input-container >
+  <input  mdInput placeholder="signUpPassword"  type="password" placeholder="Digite sua senha" (input)="signUpPassword = $event.target.value" id="signUpPassword" required>
+</md-input-container>
+</div>
+<div class="row">  
+<md-input-container >
+  <input  mdInput placeholder="confirmPassword"  type="password" placeholder="Confirme sua senha" (input)="confirmPassword = $event.target.value" id="confirmPassword" required>
+</md-input-container>
+</div>
+   
+    <div class="list-group-item">
+        <button type="button" md-raised-button (click)="signUp()">Enviar</button>
+    </div>
+
+
+</form>

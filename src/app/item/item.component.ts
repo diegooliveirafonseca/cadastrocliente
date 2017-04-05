@@ -15,9 +15,9 @@ export class ItemComponent {
     //
     this.backandService.setAppName('diegooliveira');
     this.backandService.setSignUpToken('ffee414d-f069-4fe6-b483-096e8e3fa86f');
-    this.backandService.setAnonymousToken('fbfdd4b6-db51-4e12-9477-338efb03c89f');
+    //this.backandService.setAnonymousToken('fbfdd4b6-db51-4e12-9477-338efb03c89f');
     //entra em modo anômimo
-    this.backandService.useAnonymousAuth();
+    //this.backandService.useAnonymousAuth();
     this.item = {};
     this.itens = [];
 

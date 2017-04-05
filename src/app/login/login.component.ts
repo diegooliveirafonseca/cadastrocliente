@@ -1,42 +1,36 @@
 import { Component, OnInit } from '@angular/core';
-import 'rxjs/Rx';
-import {BackandService} from 'angular2bknd-sdk'
-
+import { BackandService } from 'angular2bknd-sdk'
+import { Router } from '@angular/router';
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+    selector: 'app-login',
+    templateUrl: './login.component.html',
+    styleUrls: ['./login.component.css']
 })
+
+
 export class LoginComponent implements OnInit {
 
+    ngOnInit() {
+    }
 
-	ngOnInit() {
-	}
-
-
-    
-    username:string = '';
-    password:string = '';
-    auth_type:string = "N/A";
-    is_auth_error:boolean = false;
-    auth_status:string = null;
+    username: string = '';
+    password: string = '';
+    auth_type: string = "N/A";
+    is_auth_error: boolean ;
+    auth_status: string = null;
     loggedInUser: string = '';
+    usuarioAutenticado: boolean;
 
 
-    oldPassword: string = '';
-    newPassword: string = '';
-    confirmNewPassword: string = '';
 
-
-    constructor(private backandService:BackandService) { 
+    constructor(private backandService: BackandService, private router: Router) {
         this.auth_type = backandService.getAuthType();
         this.auth_status = backandService.getAuthStatus();
         this.loggedInUser = backandService.getUsername();
+
     }
 
-
     public getAuthTokenSimple() {
-
         this.auth_type = 'Token';
         var $obs = this.backandService.signin(this.username, this.password);
         $obs.subscribe(
@@ -46,23 +40,17 @@ export class LoginComponent implements OnInit {
                 this.loggedInUser = this.username;
                 this.username = '';
                 this.password = '';
+                this.usuarioAutenticado = true;
+                this.router.navigate(['/cliente']);
+                console.log('Logado');
             },
             err => {
                 var errorMessage = this.backandService.extractErrorMessage(err);
-
                 this.auth_status = `Error: ${errorMessage}`;
                 this.is_auth_error = true;
-                this.backandService.logError(err)
+                this.backandService.logError(err);
             },
-            () => console.log('Finish Auth'));
-    }
-
-    public useAnonymousAuth() {
-        this.backandService.useAnonymousAuth();
-        this.auth_status = 'OK';
-        this.is_auth_error = false;
-        this.auth_type = 'Anonymous';
-        this.loggedInUser = 'Anonymous';
+            () => console.log('Autenticação Finalizada e usuarioAutenticado= '+this.usuarioAutenticado));
     }
 
     public signOut() {
@@ -70,23 +58,11 @@ export class LoginComponent implements OnInit {
         this.backandService.signout();
     }
 
-
-
-    public changePassword() {
-        if (this.newPassword != this.confirmNewPassword){
-            alert('Passwords should match');
-            return;
-        }
-        var $obs = this.backandService.changePassword(this.oldPassword, this.newPassword);
-        $obs.subscribe(
-            data => {
-                alert('Password changed');
-                this.oldPassword = this.newPassword = this.confirmNewPassword = '';
-            },
-            err => {
-                this.backandService.logError(err)
-            },
-            () => console.log('Finish change password'));
+   public usuarioEstaAutenticado() {
+         console.log('usuarioAutenticado' +this.usuarioAutenticado)
+        return this.usuarioAutenticado
     }
+
+
 
 }

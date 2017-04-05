@@ -2,40 +2,40 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
-import {CadastroClienteAppRoutingModule} from './app-routing.module';
-import {ErrorComponent} from './pages/error/error.component';
-
-import { TextMaskModule } from 'angular2-text-mask';
-import {BackandService} from 'angular2bknd-sdk';
-import {MaterialModule} from '@angular/material';
 import { AppComponent } from './app.component';
-import {LoginComponent} from './login/login.component';
-import {SignupComponent} from './signup/signup.component';
-import {ClienteComponent} from './cliente/cliente.component';
-import {ItemComponent} from './item/item.component';
-import {PedidoComponent} from './pedido/pedido.component';
+import { LoginComponent } from './login/login.component';
+import { ClienteComponent } from './cliente/cliente.component';
+import { HomeComponent } from './home/home.component';
+import { routing } from './app.routing';
+import { MaterialModule } from '@angular/material';
+import { BackandService } from 'angular2bknd-sdk';
+import { RegistrarComponent } from './registrar/registrar.component';
+import { ItemComponent } from './item/item.component';
+import { PedidoComponent } from './pedido/pedido.component';
+import { AuthGuard } from './guards/auth.guard';
 
+//import {CadastroClienteAppRoutingModule} from './app.routing';
+import { ErrorComponent } from './pages/error/error.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    SignupComponent,
     ClienteComponent,
     ItemComponent,
     PedidoComponent,
-    ErrorComponent
+    ErrorComponent,
+    HomeComponent,
+    RegistrarComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
-    TextMaskModule, 
-    MaterialModule,
-    MaterialModule.forRoot(),
-    CadastroClienteAppRoutingModule
+    routing,
+    MaterialModule
   ],
-  providers: [BackandService],
+  providers: [BackandService,AuthGuard,LoginComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

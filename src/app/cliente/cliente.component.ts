@@ -19,9 +19,9 @@ export class ClienteComponent {
   clientes: any;
   constructor(private router: Router, private backandService: BackandService) {
     //
-    this.backandService.setAppName('financaspaidegua');
-    this.backandService.setSignUpToken('4647a51a-b46c-47f4-94cc-532fd489ce75');
-  
+    this.backandService.setAppName('diegooliveira');
+    this.backandService.setSignUpToken('ffee414d-f069-4fe6-b483-096e8e3fa86f');
+
 
     this.cliente = {};
     this.clientes = [];
@@ -72,6 +72,8 @@ export class ClienteComponent {
 
   excluir(c) {
     //console.log(c)
+    let confirmar = confirm("Tem certeza que deseja excluir?");
+    if(confirmar){
     this.backandService.delete('cliente', c.id)
       .subscribe(
       data => {
@@ -83,11 +85,11 @@ export class ClienteComponent {
         alert("Excluido com sucesso!!")
         this.listar();
       }
-
-      );
+       );
+    }
   }
 
-  limpar(){
+  limpar() {
     this.cliente = {};
     this.listar();
   }
@@ -99,7 +101,7 @@ export class ClienteComponent {
       .subscribe(
       data => {
         this.clientes = data;
-        
+
       },
       err => {
         console.log(err);
@@ -108,7 +110,7 @@ export class ClienteComponent {
   }
 
   public navigate(url) {
-		this.router.navigate([url]);
-	}
+    this.router.navigate([url]);
+  }
 
 }
